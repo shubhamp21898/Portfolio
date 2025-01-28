@@ -4,7 +4,7 @@
   "main": "main.js",
   "scripts": {
   "start": "live-server",
-  "build": "echo 'No build step required'"
+  "build": "echo 'No build step required' && exit 0"
 },
   "keywords": [],
   "author": "",
