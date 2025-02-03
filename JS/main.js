@@ -1,5 +1,5 @@
 
-(function() {
+(function () {
   "use strict";
 
   /**
@@ -85,7 +85,7 @@
   /**
    * Mobile nav toggle
    */
-  on('click', '.mobile-nav-toggle', function(e) {
+  on('click', '.mobile-nav-toggle', function (e) {
     select('body').classList.toggle('mobile-nav-active')
     this.classList.toggle('bi-list')
     this.classList.toggle('bi-x')
@@ -94,7 +94,7 @@
   /**
    * Scrool with ofset on links with a class name .scrollto
    */
-  on('click', '.scrollto', function(e) {
+  on('click', '.scrollto', function (e) {
     if (select(this.hash)) {
       e.preventDefault()
 
@@ -154,7 +154,7 @@
     new Waypoint({
       element: skilsContent,
       offset: '80%',
-      handler: function(direction) {
+      handler: function (direction) {
         let progress = select('.progress .progress-bar', true);
         progress.forEach((el) => {
           el.style.width = el.getAttribute('aria-valuenow') + '%'
@@ -175,9 +175,9 @@
 
       let portfolioFilters = select('#portfolio-flters li', true);
 
-      on('click', '#portfolio-flters li', function(e) {
+      on('click', '#portfolio-flters li', function (e) {
         e.preventDefault();
-        portfolioFilters.forEach(function(el) {
+        portfolioFilters.forEach(function (el) {
           el.classList.remove('filter-active');
         });
         this.classList.add('filter-active');
@@ -185,7 +185,7 @@
         portfolioIsotope.arrange({
           filter: this.getAttribute('data-filter')
         });
-        portfolioIsotope.on('arrangeComplete', function() {
+        portfolioIsotope.on('arrangeComplete', function () {
           AOS.refresh()
         });
       }, true);
@@ -193,7 +193,7 @@
 
   });
 
-  
+
 
   /**
    * Initiate portfolio lightbox 
@@ -270,16 +270,67 @@
 function validateForm() {
   var email = document.getElementById("email").value;
   var emailError = document.getElementById("emailError");
-  
-  
+
+
   var emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-  
+
   if (!emailRegex.test(email)) {
     emailError.innerHTML = "Invalid email address";
     return false;
   } else {
     emailError.innerHTML = "";
   }
-  
+
   return true;
 }
+function openLoginPopup() {
+  const popup=document.getElementById("LoginPopup");
+  resetPopup(popup)
+  popup.style.display = "block";
+}
+
+function closePopup(obj) {
+  const popup = obj.closest('.full-page-modal');
+  popup.style.display = 'none';
+}
+function fnOpenUserRegLogPopup(obj) {
+  const popup = obj.closest('.full-page-modal');
+  resetPopup(popup);
+  if (document.getElementById("LoginPopup").style.display != "none") {
+    document.getElementById("UserRegisterPopup").style.display = "flex";
+  }
+  else if(document.getElementById("UserRegisterPopup").style.display != "none"){
+    document.getElementById("LoginPopup").style.display = "block";
+  }
+  popup.style.display = 'none';
+}
+// Helper function to reset popup state
+function resetPopup(popup) {
+  const form = popup.querySelector('form');
+  if (form) {
+    form.reset(); 
+    form.classList.remove('was-validated'); 
+  }
+}
+
+/*
+//------------------ Send to Google Excel Code Old(Backup)----------------------------------//
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbw1mUYjdzPpj5YKYbP121rdo3DrDyR1_WVeuLiODupqCjNQSPaH3_ZvZL2-_3ur1K0A/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg")
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+        .then(response => {
+          msg.innerHTML = "Your message has been sent succesfully. Thank you!"
+          setTimeout(function () {
+            msg.innerHTML = ""
+          }, 5000)
+          form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+//------------------ Send to Google Excel Code Old(Backup)----------------------------------//
+*/

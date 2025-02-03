@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "main": "main.js",
   "scripts": {
-  "start": "live-server",
-  "build": "echo 'No build step required' && exit 0"
-},
+    "start": "live-server",
+    "build": "echo 'No build step required' && exit 0"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "firebase": "^11.2.0"
+  }
 }
